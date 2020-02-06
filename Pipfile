@@ -42,4 +42,4 @@ ipykernel = "*"
 googletrans = "*"
 
 [requires]
-python_version = "3.7.6"
+python_version = "*"
