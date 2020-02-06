@@ -8,12 +8,14 @@ from sklearn.preprocessing import LabelEncoder
 
 class Data(object):
     def __init__(self):
-        self.INPUT_PATH = os.getcwd()
-
+        print('#######data#######')
+        print(os.getcwd())
+        print('#######data#######')
+        self.CWD = os.getcwd()
     def _load(self):
-        train_path = f'{self.INPUT_PATH}/../input/titanic/train.csv'
+        train_path = f'{self.CWD}/../input/titanic/train.csv'
         train = pd.read_csv(train_path, error_bad_lines=False)
-        test_path = f'{self.INPUT_PATH}/../input/titanic/test.csv'
+        test_path = f'{self.CWD}/../input/titanic/test.csv'
         test = pd.read_csv(test_path, error_bad_lines=False)
         return train, test
 
