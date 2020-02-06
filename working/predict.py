@@ -7,13 +7,22 @@ import pandas_profiling as pdp
 from IPython.display import display
 from sklearn.metrics import accuracy_score
 
-from working.data import Data
-from working.cv import CV
-from working.lgbm_wrapper import LGBMWrapper
-from working.xgb_wrapper import XGBWrapper
-from working.cat_wrapper import CatWrapper
-from working.lr_wrapper import LogisticRegrWrapper
-from working.nn_wrapper import NNWrapper
+try:
+    from data import Data
+    from cv import CV
+    from lgbm_wrapper import LGBMWrapper
+    from xgb_wrapper import XGBWrapper
+    from cat_wrapper import CatWrapper
+    from lr_wrapper import LogisticRegrWrapper
+    from nn_wrapper import NNWrapper
+except expression:
+    from working.data import Data
+    from working.cv import CV
+    from working.lgbm_wrapper import LGBMWrapper
+    from working.xgb_wrapper import XGBWrapper
+    from working.cat_wrapper import CatWrapper
+    from working.lr_wrapper import LogisticRegrWrapper
+    from working.nn_wrapper import NNWrapper
 
 
 pd.set_option('display.max_columns', None)
