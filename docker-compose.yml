@@ -3,7 +3,6 @@ services:
   dev:
     build:
       context: .
-      dockerfile: Dockerfile
     image: kaggle/python
     volumes:
       - $PWD:/root/dev

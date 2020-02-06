@@ -1,6 +1,10 @@
 # %%
-import pickle
+# import pickle
+import numpy as np
 import os
+
+import pandas as pd
+from sklearn.preprocessing import LabelEncoder
 
 
 class Data(object):
@@ -8,54 +12,51 @@ class Data(object):
         if '/kaggle/working' in os.getcwd():
             self.input_path = '/kaggle/input'
         else:
-            self.input_path = './input'
+            self.input_path = '../input'
 
     def _load(self):
-        with open(f'{self.input_path}/titanicdatasetpickles/train.pickle', 'rb') as f:
-            train = pickle.load(f)
-
-        with open(f'{self.input_path}/titanicdatasetpickles/test.pickle', 'rb') as f:
-            test = pickle.load(f)
-
-        with open(f'{self.input_path}/titanicdatasetpickles/gender_submission.pickle', 'rb') as f:
-            gender_submission = pickle.load(f)
-
-        return train, test, gender_submission
+        train_path = '../input/titanic/train.csv'
+        train = pd.read_csv(train_path, error_bad_lines=False)
+        test_path = '../input/titanic/test.csv'
+        test = pd.read_csv(test_path, error_bad_lines=False)
+        return train, test
 
     def processing(self):
-        train, test, gender_submission = self._load()
+        train, test = self._load()
+        le = LabelEncoder()
+        le.fit(train['Sex'])
 
-        Embarked_dict = {
-            'S': 0,
-            'C': 1,
-            'Q': 2
-        }
-        train['Embarked'] = train['Embarked'].map(Embarked_dict)
-        test['Embarked'] = test['Embarked'].map(Embarked_dict)
+        train['Sex'] = le.transform(train['Sex'])
+        train_dropna = train.dropna()
+        train_x = train_dropna[['Age', 'Sex']]
+        train_y = train_dropna['Survived']
 
-        Sex_dict = {
-            'male': 0,
-            'female': 1
-        }
-        train['Sex'] = train['Sex'].map(Sex_dict)
-        test['Sex'] = test['Sex'].map(Sex_dict)
+        test['Sex'] = le.transform(test['Sex'])
+        test_dropna = test.dropna()
+        test_x = test_dropna[['Age', 'Sex']]
 
-        train.drop(['PassengerId', 'Name', 'Cabin',
-                    'Ticket'], axis=1, inplace=True)
-        test.drop(['PassengerId', 'Name', 'Cabin',
-                   'Ticket'], axis=1, inplace=True)
+        return train_x, train_y, test_x
 
-        # X_trainはtrainのSurvived列以外
-        X_train = train.drop(['Survived'], axis=1)
-        y_train = train['Survived']  # Y_trainはtrainのSurvived列
+    def nn_processing(self):
+        train, test = self._load()
 
-        return X_train, y_train, test, gender_submission
+        train_dropna = train.dropna()
+        train_x = train_dropna[['Age', 'Sex']]
+        train_x = pd.get_dummies(train_x)
+        train_y = train_dropna['Survived']
+
+        test_dropna = test.dropna()
+        test_x = test_dropna[['Age', 'Sex']]
+        test_x = pd.get_dummies(test_x)
+
+        return train_x, train_y, test_x
 
 
 if __name__ == '__main__':
     data = Data()
-    X_train, y_train, test, gender_submission = data.processing()
-    display(X_train)
+    train_x, train_y, test_x = data.processing()
 
+    # for i in train_x.itertuples():
+    # print(i)
 
-# %%
+#%%

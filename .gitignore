@@ -1,0 +1,9 @@
+.history/
+.ipynb_checkpoints/
+.venv/
+.vscode/
+__pycache__/
+.DS_Store
+*.pyc
+.env
+
