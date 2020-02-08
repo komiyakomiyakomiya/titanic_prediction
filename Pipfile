@@ -13,6 +13,7 @@ jupyter = "*"
 ipdb = "*"
 flake8 = "*"
 pylint = "*"
+ipykernel = "*"
 
 [packages]
 pandas = "==0.24.2"
@@ -38,8 +39,7 @@ h5py = "*"
 fastai = "*"
 pytz = "*"
 torch = "*"
-ipykernel = "*"
 googletrans = "*"
 
 [requires]
-python_version = "*"
+python_version = "3.7.6"

@@ -40,31 +40,3 @@ class LogisticRegrWrapper(object):
         # pred = self.pipeline.predict(x)
 
         return pred_proba
-
-
-# %%
-if __name__ == '__main__':
-    import numpy as np
-    from sklearn.metrics import accuracy_score
-
-    from data import Data
-    from cv import CV
-
-    data = Data()
-    cv = CV()
-    lr_wrap = LogisticRegrWrapper()
-
-    X_train, y_train, X_test, y_test = data.processing()
-
-    lr_pred_tr_layer, lr_pred_test_layer = cv.predict_cv(
-        lr_wrap, X_train, y_train, X_test)
-
-    tr_pred_binary = np.where(lr_pred_tr_layer > 0.5, 1, 0)
-    test_pred_binary = np.where(lr_pred_test_layer > 0.5, 1, 0)
-
-    print(
-        f'accuracy_score LogisticRegrssion: {round(accuracy_score(y_train, tr_pred_binary)*100, 2)}')
-
-    print(
-        f'accuracy_score LogisticRegrssion: {round(accuracy_score(y_test, test_pred_binary)*100, 2)}')
-# %%

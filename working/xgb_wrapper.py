@@ -47,7 +47,7 @@ class XGBWrapper(object):
         # 降順にソート
         df_importance = df_importance.sort_values(
             'importance', ascending=False)
-        display(df_importance)
+        print(df_importance)
 
         # [print(i) for i in sorted(feature_importance.items(), key=lambda x:)]
 
@@ -55,29 +55,3 @@ class XGBWrapper(object):
         data = xgb.DMatrix(x)
         pred = self.model.predict(data)
         return pred
-
-
-if __name__ == '__main__':
-    import numpy as np
-    from sklearn.metrics import accuracy_score
-
-    from data import Data
-    from cv import CV
-
-    data = Data()
-    cv = CV()
-    xgb_wrap = XGBWrapper()
-
-    X_train, y_train, X_test = data.processing()
-
-    tr_pred, test_pred = cv.predict_cv(
-        xgb_wrap, X_train, y_train, X_test)
-
-    tr_pred_binary = np.where(tr_pred > 0.5, 1, 0)
-    test_pred_binary = np.where(test_pred > 0.5, 1, 0)
-
-    print(accuracy_score(y_train, tr_pred_binary)*100, 2)
-    print(accuracy_score(y_test, test_pred_binary)*100, 2)
-
-
-# %%

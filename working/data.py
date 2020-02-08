@@ -1,17 +1,17 @@
 # %%
 import os
 
-import numpy as np
-import pandas as pd
 from sklearn.preprocessing import LabelEncoder
+import pandas as pd
+import numpy as np
 
 
+# %%
 class Data(object):
     def __init__(self):
-        print('#######data#######')
-        print(os.getcwd())
-        print('#######data#######')
-        self.CWD = os.getcwd()
+        self.CWD = os.path.dirname(os.path.abspath(__file__))
+        print(self.CWD)
+
     def _load(self):
         train_path = f'{self.CWD}/../input/titanic/train.csv'
         train = pd.read_csv(train_path, error_bad_lines=False)
@@ -51,11 +51,12 @@ class Data(object):
 
 
 if __name__ == '__main__':
+    """ test """
+    import sys
+
+    from IPython.display import display
+
     data = Data()
     train_x, train_y, test_x = data.processing()
-    display(train_y)
-
-    # for i in train_x.itertuples():
-    # print(i)
-
-# %%
+    print('################################')
+    print(sys.path)

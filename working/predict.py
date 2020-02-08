@@ -1,5 +1,7 @@
 # %%
+import os
 import pdb
+import sys
 
 import numpy as np
 import pandas as pd
@@ -7,19 +9,21 @@ import pandas_profiling as pdp
 from IPython.display import display
 from sklearn.metrics import accuracy_score
 
-from data import Data
-from cv import CV
-from lgbm_wrapper import LGBMWrapper
-from xgb_wrapper import XGBWrapper
-from cat_wrapper import CatWrapper
-from lr_wrapper import LogisticRegrWrapper
-from nn_wrapper import NNWrapper
-import os
 
+self_dir_path = os.path.dirname(os.path.abspath(__file__))
+sys_path_list = sys.path
+if self_dir_path not in sys_path_list:
+    sys_path_list.append(self_dir_path)
 
-print('#######predict#######')
-print(os.getcwd())
-print('#######predict#######')
+if True:
+    from data import Data
+    from cv import CV
+    from lgbm_wrapper import LGBMWrapper
+    from xgb_wrapper import XGBWrapper
+    from cat_wrapper import CatWrapper
+    from lr_wrapper import LogisticRegrWrapper
+    from nn_wrapper import NNWrapper
+
 
 pd.set_option('display.max_columns', None)
 pd.set_option('display.max_rows', None)
@@ -29,7 +33,6 @@ data = Data()
 train_x, train_y, test_x = data.processing()
 
 cv = CV()
-
 
 # stacking layer1
 # LightGBM
@@ -59,7 +62,7 @@ acc_train_xgb = round(accuracy_score(train_y, pred_binary_train_xgb)*100, 2)
 
 print(f'acc_train XGB: {acc_train_xgb}')
 
-# %%
+
 # CatBoost
 print('######### Cat #########')
 cat_wrap = CatWrapper()
@@ -86,7 +89,6 @@ pred_binary_test_nn = np.where(pred_test_nn > 0.5, 1, 0)
 acc_train_nn = round(accuracy_score(train_y, pred_binary_train_nn)*100, 2)
 
 print(f'acc_train NN: {acc_train_nn}')
-
 
 # Make feature for stacking layer2
 train_x2 = pd.DataFrame({'pred_lgbm': pred_train_lgbm,
