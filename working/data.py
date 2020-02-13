@@ -1,4 +1,5 @@
 # %%
+import googleapiclient.discovery
 import os
 from io import BytesIO
 
@@ -7,10 +8,10 @@ import numpy as np
 import pandas as pd
 
 if '/Users/' in __file__:
-    from dotenv import load_dotenv
+    # from dotenv import load_dotenv
     CWD = os.path.dirname(os.path.abspath(__file__))
     print(CWD)
-    load_dotenv('{}/../.env'.format(CWD))
+    # load_dotenv('{}/../.env'.format(CWD))
 
 
 class Data(object):
@@ -81,10 +82,8 @@ if __name__ == '__main__':
 
     input_data = [[36, 0]]
 
-
     print(input_data)
 
-import googleapiclient.discovery
 # Fill in your PROJECT_ID, VERSION_NAME and MODEL_NAME before running
 # this code.
 
