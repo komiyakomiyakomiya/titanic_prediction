@@ -45,7 +45,6 @@ class XGBWrapper(object):
         model_dir_path = './models/'
         file_name_bst = 'model.bst'
         file_name_pkl = 'model.pkl'
-        self.model.save_model(model_dir_path+file_name_bst)
         with open(model_dir_path+file_name_pkl, 'wb') as f:
             pickle.dump(self.model, f)
 

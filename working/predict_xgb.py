@@ -39,14 +39,8 @@ print('##### acc_xgb #####')
 print(acc_train_xgb)
 
 # test pred
-pred_binary_test_xgb = np.where(pred_test_xgb > 0.5, 1, 0)
-test_x['Survived'] = pred_binary_test_xgb
-test_pred_series = test_x['Survived']
-print('##### test_pred_series #####')
-print(test_pred_series)
-
-
-# %%
-
-
-# %%
+# pred_binary_test_xgb = np.where(pred_test_xgb > 0.5, 1, 0)
+# test_x['Survived'] = pred_binary_test_xgb
+# test_pred_series = test_x['Survived']
+# print('##### test_pred_series #####')
+# print(test_pred_series)
