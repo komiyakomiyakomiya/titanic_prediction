@@ -3,7 +3,6 @@ import pickle
 
 import pandas as pd
 import xgboost as xgb
-# from matplotlib import pyplot as plt
 
 
 class XGBWrapper(object):
@@ -12,7 +11,6 @@ class XGBWrapper(object):
 
     def fit(self, tr_x, tr_y, va_x, va_y):
         feature_names = ['f0', 'f1']
-        # feature_names = tr_x.columns
         dtrain = xgb.DMatrix(tr_x, label=tr_y, feature_names=feature_names)
         dvalid = xgb.DMatrix(va_x, label=va_y, feature_names=feature_names)
 
@@ -34,7 +32,6 @@ class XGBWrapper(object):
         importance = self.model.get_score(importance_type='gain')
         df_importance = pd.DataFrame(
             importance.values(), index=importance.keys(), columns=['importance'])
-        # 降順にソート
         df_importance = df_importance.sort_values(
             'importance', ascending=False)
         print(df_importance)
