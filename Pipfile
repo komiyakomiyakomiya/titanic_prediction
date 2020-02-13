@@ -40,6 +40,9 @@ fastai = "*"
 pytz = "*"
 torch = "*"
 googletrans = "*"
+google-cloud-storage = "*"
+python-dotenv = "*"
+google-api-python-client = "*"
 
 [requires]
-python_version = "3.7.6"
+python_version = "3.5"
