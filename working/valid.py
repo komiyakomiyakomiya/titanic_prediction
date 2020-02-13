@@ -47,5 +47,4 @@ class Valid(object):
         order = np.argsort(index_list_valid)
         pred_cv = preds_list_valid[order]
         pred_test_mean = np.mean(preds_list_test, axis=0)
-        # trは特徴量にするのでmeanする必要ない
         return pred_cv, pred_test_mean
