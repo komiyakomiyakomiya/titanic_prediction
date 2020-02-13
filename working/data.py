@@ -6,11 +6,13 @@ from google.cloud import storage
 import numpy as np
 import pandas as pd
 
+
+cwd = os.path.dirname(os.path.abspath(__file__))
+print(cwd)
+
 if '/Users/' in __file__:
-    # from dotenv import load_dotenv
-    cwd = os.path.dirname(os.path.abspath(__file__))
-    print(cwd)
-    # load_dotenv('{}/../.env'.format(cwd))
+    from dotenv import load_dotenv
+    load_dotenv('{}/../.env'.format(cwd))
 
 
 class Data(object):
