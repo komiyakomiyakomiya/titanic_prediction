@@ -40,7 +40,7 @@ class Valid(object):
             pred_test = model_wrapper.predict(test_x)
             preds_list_test.append(pred_test)
             index_list_valid.append(va_idx)
-            print('fold{} end\n'.format(i))
+            print('fold{} end'.format(i))
 
         index_list_valid = np.concatenate(index_list_valid, axis=0)
         preds_list_valid = np.concatenate(preds_list_valid, axis=0)

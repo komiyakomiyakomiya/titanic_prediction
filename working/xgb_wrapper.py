@@ -13,8 +13,6 @@ class XGBWrapper(object):
     def fit(self, tr_x, tr_y, va_x, va_y):
         feature_names = ['f0', 'f1']
         # feature_names = tr_x.columns
-        print('################################')
-        print(feature_names)
         dtrain = xgb.DMatrix(tr_x, label=tr_y, feature_names=feature_names)
         dvalid = xgb.DMatrix(va_x, label=va_y, feature_names=feature_names)
 
@@ -55,6 +53,7 @@ class XGBWrapper(object):
 
 
 if __name__ == '__main__':
+    """ test """
     import numpy as np
     from data import Data
     from valid import Valid

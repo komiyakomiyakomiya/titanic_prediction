@@ -44,3 +44,6 @@ print(acc_train_xgb)
 # test_pred_series = test_x['Survived']
 # print('##### test_pred_series #####')
 # print(test_pred_series)
+
+
+# %%
