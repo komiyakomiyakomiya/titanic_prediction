@@ -1,8 +1,12 @@
 # %%
+import os
 import pickle
 
 import pandas as pd
 import xgboost as xgb
+
+
+cwd = os.path.dirname(os.path.abspath(__file__))
 
 
 class XGBWrapper(object):
@@ -37,7 +41,7 @@ class XGBWrapper(object):
         print(df_importance)
 
     def save_model(self):
-        model_dir_path = './models/'
+        model_dir_path = '{}/models/'.format(cwd)
         file_name_bst = 'model.bst'
         file_name_pkl = 'model.pkl'
         with open(model_dir_path+file_name_pkl, 'wb') as f:
