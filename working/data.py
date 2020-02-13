@@ -8,9 +8,9 @@ import pandas as pd
 
 if '/Users/' in __file__:
     # from dotenv import load_dotenv
-    CWD = os.path.dirname(os.path.abspath(__file__))
-    print(CWD)
-    # load_dotenv('{}/../.env'.format(CWD))
+    cwd = os.path.dirname(os.path.abspath(__file__))
+    print(cwd)
+    # load_dotenv('{}/../.env'.format(cwd))
 
 
 class Data(object):
@@ -18,8 +18,8 @@ class Data(object):
         pass
 
     def load(self):
-        TRAIN_PATH = '{}/../input/titanic/train.csv'.format(CWD)
-        TEST_PATH = '{}/../input/titanic/test.csv'.format(CWD)
+        TRAIN_PATH = '{}/../input/titanic/train.csv'.format(cwd)
+        TEST_PATH = '{}/../input/titanic/test.csv'.format(cwd)
 
         train = pd.read_csv(TRAIN_PATH)
         test = pd.read_csv(TEST_PATH)
