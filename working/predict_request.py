@@ -12,7 +12,7 @@ def main():
 
     print(input_data)
 
-    PROJECT_ID = 'mypj-id'
+    PROJECT_ID = 'watashino-pjid-b'
     VERSION_NAME = 'v1'
     MODEL_NAME = 'model_xgb'
 
